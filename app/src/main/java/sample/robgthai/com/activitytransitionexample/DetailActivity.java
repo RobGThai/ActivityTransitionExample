@@ -21,6 +21,8 @@ import java.util.Map;
 
 public class DetailActivity extends ActionBarActivity {
 
+    ImageView imgIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
@@ -38,6 +40,8 @@ public class DetailActivity extends ActionBarActivity {
             public void onSharedElementEnd(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
                 super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots);
                 Log.d("Transition", "enter onSharedElementEnd");
+                imgIcon.setVisibility(View.GONE);
+                Log.d("Transition", "Set imgIcon visibility: " + imgIcon.getVisibility());
             }
 
             @Override
@@ -65,7 +69,7 @@ public class DetailActivity extends ActionBarActivity {
             }
         });
 
-        ImageView imgIcon = (ImageView) findViewById(R.id.imgIcon);
+        imgIcon = (ImageView) findViewById(R.id.imgIcon);
         imgIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
