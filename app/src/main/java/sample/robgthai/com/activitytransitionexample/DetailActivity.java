@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class DetailActivity extends ActionBarActivity {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
+//        ActivityCompat.postponeEnterTransition(this);
         ActivityCompat.setEnterSharedElementCallback(this, new SharedElementCallback() {
             @Override
             public void onSharedElementStart(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
@@ -63,6 +64,18 @@ public class DetailActivity extends ActionBarActivity {
                 return super.onCreateSnapshotView(context, snapshot);
             }
         });
+
+        ImageView imgIcon = (ImageView) findViewById(R.id.imgIcon);
+        imgIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                resumeTransition();
+            }
+        });
+    }
+
+    private void resumeTransition() {
+        ActivityCompat.startPostponedEnterTransition(this);
     }
 
     @Override
