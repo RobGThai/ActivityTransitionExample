@@ -1,8 +1,10 @@
 package sample.robgthai.com.activitytransitionexample;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.os.AsyncTask;
 import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.SharedElementCallback;
@@ -40,8 +42,7 @@ public class DetailActivity extends ActionBarActivity {
             public void onSharedElementEnd(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
                 super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots);
                 Log.d("Transition", "enter onSharedElementEnd");
-                imgIcon.setVisibility(View.GONE);
-                Log.d("Transition", "Set imgIcon visibility: " + imgIcon.getVisibility());
+                new StupidAsyncTask().execute();
             }
 
             @Override
@@ -73,6 +74,7 @@ public class DetailActivity extends ActionBarActivity {
         imgIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imgIcon.setVisibility(View.GONE);
 //                resumeTransition();
             }
         });
@@ -108,5 +110,23 @@ public class DetailActivity extends ActionBarActivity {
     public void onBackPressed() {
         ActivityCompat.finishAfterTransition(this);
 //        super.onBackPressed();
+    }
+
+    class StupidAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Thread.sleep(500l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            imgIcon.setVisibility(View.GONE);
+        }
     }
 }
