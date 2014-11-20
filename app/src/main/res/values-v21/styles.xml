@@ -11,9 +11,9 @@
         <!--<item name="android:windowExitTransition">@transition/fade</item>-->
 
         <!-- specify shared element transitions -->
-        <!--<item name="android:windowSharedElementEnterTransition">-->
-            <!--@transition/change_clip_bounds</item>-->
-        <!--<item name="android:windowSharedElementExitTransition">-->
-            <!--@transition/change_clip_bounds</item>-->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/my_transition</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/my_transition</item>
     </style>
 </resources>
