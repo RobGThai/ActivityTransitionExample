@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imgIcon"
         android:layout_marginTop="10dp"
+        android:textColor="#f00"
         android:transitionName="@string/transition_title" />
 
 </RelativeLayout>
