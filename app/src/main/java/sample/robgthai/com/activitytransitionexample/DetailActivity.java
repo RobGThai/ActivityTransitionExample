@@ -42,7 +42,7 @@ public class DetailActivity extends ActionBarActivity {
             public void onSharedElementEnd(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
                 super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots);
                 Log.d("Transition", "enter onSharedElementEnd");
-                new StupidAsyncTask().execute();
+//                new StupidAsyncTask().execute();
             }
 
             @Override
