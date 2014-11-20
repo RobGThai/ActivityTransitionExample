@@ -67,17 +67,19 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDetail() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ((ViewGroup) imgIcon.getParent()).setTransitionGroup(false);
-        }
-
-        Intent intent = new Intent(this, DetailActivity.class);
+    private ActivityOptionsCompat getOptionCompat() {
         String transitionName = getString(R.string.transition_cover);
-        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
-              Pair.create((View)imgIcon, transitionName)
-            , Pair.create((View)txtHello, getString(R.string.transition_title)));
+        return ActivityOptionsCompat.makeSceneTransitionAnimation(this,
+                Pair.create((View)imgIcon, transitionName)
+                , Pair.create((View)txtHello, getString(R.string.transition_title)));
+    }
 
+    private ActivityOptionsCompat getSimpleOptionCompat() {
+        String transitionName = getString(R.string.transition_cover);
+        return ActivityOptionsCompat.makeSceneTransitionAnimation(this, (View)imgIcon, transitionName);
+    }
+
+    private void setExitTransitionListener() {
         ActivityCompat.setExitSharedElementCallback(this, new SharedElementCallback() {
             @Override
             public void onSharedElementStart(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
@@ -115,6 +117,15 @@ public class MainActivity extends ActionBarActivity {
                 return super.onCreateSnapshotView(context, snapshot);
             }
         });
+    }
+
+    private void showDetail() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ((ViewGroup) imgIcon.getParent()).setTransitionGroup(false);
+        }
+
+        Intent intent = new Intent(this, DetailActivity.class);
+        ActivityOptionsCompat optionsCompat = getOptionCompat();
         ActivityCompat.startActivity(this, intent, optionsCompat.toBundle());
     }
 }
